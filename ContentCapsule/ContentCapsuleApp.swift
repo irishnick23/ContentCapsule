@@ -1,14 +1,12 @@
-//
-//  ContentCapsuleApp.swift
-//  ContentCapsule
-//
-//  Created by Nicholas White on 7/5/24.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct ContentCapsuleApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

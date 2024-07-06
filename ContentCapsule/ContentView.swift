@@ -1,24 +1,31 @@
-//
-//  ContentView.swift
-//  ContentCapsule
-//
-//  Created by Nicholas White on 7/5/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
 
-#Preview {
-    ContentView()
+    var body: some View {
+        if isUserLoggedIn {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                SaveView()
+                    .tabItem {
+                        Label("Save", systemImage: "plus")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+            }
+            .accentColor(DesignSystem.secondaryColor)
+        } else {
+            AuthView()
+        }
+    }
 }
